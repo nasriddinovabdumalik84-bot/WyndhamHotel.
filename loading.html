@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Wyndham Garden Chorvoq Hotel</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            width: 100%;
+            height: 100vh;
+        }
+
+        /* Loading Page Container */
+        .loading-page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #0d2318;
+            z-index: 9999;
+            animation: fadeOut 1s ease 4.5s forwards;
+        }
+
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+        /* Background Image */
+        .loading-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1920&h=1080&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.3;
+            z-index: 1;
+        }
+
+        /* Overlay */
+        .loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(13, 35, 24, 0.9) 0%, rgba(26, 61, 46, 0.9) 100%);
+            z-index: 2;
+        }
+
+        /* Content Container */
+        .loading-content {
+            position: relative;
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Logo */
+        .loading-logo {
+            width: 120px;
+            height: 120px;
+            background-color: #ffffff;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 72px;
+            font-weight: 900;
+            color: #0d2318;
+            margin-bottom: 30px;
+            animation: logoZoom 1s ease-out;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        @keyframes logoZoom {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Hotel Name */
+        .loading-hotel-name {
+            font-size: 36px;
+            font-weight: 800;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 40px;
+            animation: slideDown 1s ease-out 0.5s backwards;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Loading Animation Container */
+        .loading-animation {
+            margin-bottom: 40px;
+            animation: fadeIn 1s ease-out 1s backwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Loading Dots */
+        .loading-dots {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .dot {
+            width: 18px;
+            height: 18px;
+            background-color: #ffffff;
+            border-radius: 50%;
+            animation: dotPulse 1.5s ease-in-out infinite;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+
+        .dot:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .dot:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+
+        .dot:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        @keyframes dotPulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.5);
+                opacity: 0.5;
+            }
+        }
+
+        /* Loading Bar Alternative */
+        .loading-bar-container {
+            width: 300px;
+            height: 6px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+
+        .loading-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #4fd1c5, #ffffff, #4fd1c5);
+            background-size: 200% 100%;
+            border-radius: 10px;
+            animation: loadingProgress 2s ease-in-out infinite;
+            box-shadow: 0 0 20px rgba(79, 209, 197, 0.6);
+        }
+
+        @keyframes loadingProgress {
+            0% {
+                background-position: 200% 0;
+            }
+            100% {
+                background-position: -200% 0;
+            }
+        }
+
+        /* Motto Text */
+        .loading-motto {
+            font-size: 20px;
+            font-weight: 300;
+            color: #ffffff;
+            letter-spacing: 2px;
+            font-style: italic;
+            animation: fadeIn 1s ease-out 1.5s backwards;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8);
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        /* Spinner Animation Alternative */
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(255, 255, 255, 0.2);
+            border-top: 4px solid #ffffff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 30px;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            .loading-logo {
+                width: 90px;
+                height: 90px;
+                font-size: 54px;
+                margin-bottom: 20px;
+            }
+
+            .loading-hotel-name {
+                font-size: 24px;
+                letter-spacing: 2px;
+                margin-bottom: 30px;
+            }
+
+            .loading-motto {
+                font-size: 16px;
+                letter-spacing: 1px;
+                padding: 0 20px;
+            }
+
+            .loading-bar-container {
+                width: 250px;
+            }
+
+            .dot {
+                width: 14px;
+                height: 14px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .loading-logo {
+                width: 70px;
+                height: 70px;
+                font-size: 42px;
+            }
+
+            .loading-hotel-name {
+                font-size: 18px;
+                letter-spacing: 1px;
+            }
+
+            .loading-motto {
+                font-size: 14px;
+                letter-spacing: 0.5px;
+            }
+
+            .loading-bar-container {
+                width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Page -->
+    <div class="loading-page" id="loadingPage">
+        <!-- Background Image -->
+        <div class="loading-background"></div>
+        
+        <!-- Dark Overlay -->
+        <div class="loading-overlay"></div>
+        
+        <!-- Content -->
+        <div class="loading-content">
+            <!-- Hotel Logo -->
+            <div class="loading-logo">W</div>
+            
+            <!-- Hotel Name -->
+            <h1 class="loading-hotel-name">
+                WYNDHAM GARDEN<br>CHORVOQ HOTEL
+            </h1>
+            
+            <!-- Loading Animation (Dots) -->
+            <div class="loading-animation">
+                <div class="loading-dots">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+                
+                <!-- Loading Bar -->
+                <div class="loading-bar-container">
+                    <div class="loading-bar"></div>
+                </div>
+            </div>
+            
+            <!-- Motto -->
+            <p class="loading-motto">
+                "Where Luxury Meets Nature"
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Redirect to main page after loading animation
+        setTimeout(() => {
+            window.location.href = 'en/main.html';
+        }, 5500); // 5.5 seconds (5500ms) - gives time for animation to complete
+
+        // Alternative: If you want to skip loading on click
+        document.getElementById('loadingPage').addEventListener('click', () => {
+            window.location.href = 'en/main.html';
+        });
+
+        // Prevent scrolling during loading
+        document.body.style.overflow = 'hidden';
+
+        // Alternative redirect after animation ends
+        const loadingPage = document.getElementById('loadingPage');
+        loadingPage.addEventListener('animationend', (e) => {
+            if (e.animationName === 'fadeOut') {
+                window.location.href = 'en/main.html';
+            }
+        });
+    </script>
+</body>
+</html>
